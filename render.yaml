@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: my-blog
+    env: node
+    buildCommand: npm install
+    startCommand: node src/server.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: ADMIN_USER
+        sync: false   # set manually in Render dashboard
+      - key: ADMIN_PASS
+        sync: false   # set manually in Render dashboard
+      - key: SESSION_SECRET
+        generateValue: true
+    disk:
+      name: blog-data
+      mountPath: /opt/render/project/src/data
+      sizeGB: 1
